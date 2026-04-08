@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/theme.dart';
+import '../screens/profile_screen.dart';
+import '../screens/support_screen.dart';
 
 // Widget para la navegación inferior personalizada con curvas y botón flotante encapsulado
 class CustomBottomNav extends StatelessWidget {
@@ -49,16 +51,26 @@ class CustomBottomNav extends StatelessWidget {
                       )
                     ],
                   ),
-                  const Icon(
-                    Icons.person_outline,
-                    color: AppColors.white,
-                    size: 26,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const ProfileScreen()));
+                    },
+                    child: const Icon(
+                      Icons.person_outline,
+                      color: AppColors.white,
+                      size: 26,
+                    ),
                   ),
                   const SizedBox(width: 40), // Espacio para el FAB central
-                  const Icon(
-                    Icons.chat_bubble_outline,
-                    color: AppColors.white,
-                    size: 24,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (_) => const SupportScreen()));
+                    },
+                    child: const Icon(
+                      Icons.chat_bubble_outline,
+                      color: AppColors.white,
+                      size: 24,
+                    ),
                   ),
                   const Icon(
                     Icons.favorite_border,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/product.dart';
-import '../core/theme.dart';
+import '../core/theme.dart'; // <--- IMPORTANTE: Se agregó esta línea
+import 'customize_screen.dart';
 
 // Pantalla de detalle del producto
 class ProductDetailScreen extends StatefulWidget {
@@ -26,18 +27,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            // Header (Botones de Atrás y Búsqueda, sin SafeArea arriba para el Hero)
+            // Header
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back, color: AppColors.black),
+                    icon: Icon(Icons.arrow_back, color: AppColors.black), // Se quitó el const
                     onPressed: () => Navigator.pop(context),
                   ),
                   IconButton(
-                    icon: const Icon(Icons.search, color: AppColors.black),
+                    icon: Icon(Icons.search, color: AppColors.black), // Se quitó el const
                     onPressed: () {},
                   ),
                 ],
@@ -93,18 +94,18 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       // Rating y Tiempo
                       Row(
                         children: [
-                          const Icon(Icons.star_rounded, color: AppColors.orange, size: 20),
+                          Icon(Icons.star_rounded, color: AppColors.orange, size: 20), // Se quitó el const
                           const SizedBox(width: 6),
                           Text(
                             '${widget.product.rating}',
                             style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                           const SizedBox(width: 8),
-                          const Text('—', style: TextStyle(color: AppColors.grey)),
+                          Text('—', style: TextStyle(color: AppColors.grey)), // Se quitó el const
                           const SizedBox(width: 8),
                           Text(
                             '${widget.product.time} mins',
-                            style: const TextStyle(color: AppColors.grey, fontSize: 16),
+                            style: TextStyle(color: AppColors.grey, fontSize: 16), // Se quitó el const
                           ),
                         ],
                       ),
@@ -113,9 +114,9 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                       // Descripción
                       Text(
                         widget.product.description,
-                        style: const TextStyle(
+                        style: TextStyle( // Se quitó el const
                           color: AppColors.grey,
-                          height: 1.6, // Mayor espacio entre líneas para lectura
+                          height: 1.6, 
                           fontSize: 15,
                         ),
                       ),
@@ -156,16 +157,16 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: const [
-                                      Text('Mild', style: TextStyle(color: Colors.green, fontSize: 12)),
-                                      Text('Hot', style: TextStyle(color: AppColors.primary, fontSize: 12)),
+                                    children: [
+                                      const Text('Mild', style: TextStyle(color: Colors.green, fontSize: 12)),
+                                      Text('Hot', style: TextStyle(color: AppColors.primary, fontSize: 12)), // Se quitó el const
                                     ],
                                   ),
                                 )
                               ],
                             ),
                           ),
-                          const SizedBox(width: 20), // Separador
+                          const SizedBox(width: 20), 
                           
                           // Control de Porciones
                           Expanded(
@@ -204,7 +205,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                           ),
                         ],
                       ),
-                      const SizedBox(height: 30), // Espacio al final
+                      const SizedBox(height: 30),
                     ],
                   ),
                 ),
@@ -243,7 +244,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                     ),
                     child: Text(
                       '\$${widget.product.price.toStringAsFixed(2)}',
-                      style: const TextStyle(
+                      style: TextStyle( // Se quitó el const
                         color: AppColors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -254,15 +255,17 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
                   // Botón ORDER NOW
                   Expanded(
                     child: InkWell(
-                      onTap: () {}, // Acción de orden
+                      onTap: () {
+                         Navigator.push(context, MaterialPageRoute(builder: (_) => const CustomizeScreen()));
+                      }, 
                       child: Container(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         decoration: BoxDecoration(
-                          color: AppColors.darkBrown, // Color oscuro del diseño
+                          color: AppColors.darkBrown, 
                           borderRadius: BorderRadius.circular(15),
                         ),
                         alignment: Alignment.center,
-                        child: const Text(
+                        child: Text( // Se quitó el const
                           'ORDER NOW',
                           style: TextStyle(
                             color: AppColors.white,
@@ -283,7 +286,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     );
   }
 
-  // Widget auxiliar para los botones de + y - en "Portion"
+  // Widget auxiliar para los botones de + y -
   Widget _buildPortionBtn({required IconData icon, required VoidCallback onTap}) {
     return GestureDetector(
       onTap: onTap,
@@ -300,7 +303,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
             )
           ],
         ),
-        child: Icon(icon, color: AppColors.white, size: 20),
+        child: Icon(icon, color: AppColors.white, size: 20), // Se quitó el const
       ),
     );
   }
